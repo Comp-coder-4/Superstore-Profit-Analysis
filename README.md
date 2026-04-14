@@ -1,4 +1,4 @@
-# Superstore Profit Analysis
+# Superstore Product Profitability Analysis
 
 The dataset looks at superstore sales, along with customer data and product data from 2020 to 2023.
 The categories of products are Technoloy, Office Supplies and Furniture.

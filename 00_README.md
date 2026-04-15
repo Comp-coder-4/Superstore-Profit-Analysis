@@ -7,7 +7,7 @@ The categories of products are Technoloy, Office Supplies and Furniture.
 
 KPI = Profit
 
-The goal was to identify how profit varied over time on a high level (Category-level and Subcategory-level), find the categories and subcategories with the highest profit, and lastly find products within these categories with the highest profit margin.
+The goal was to identify how profit varied over time on a high level (Category-level), find the categories and subcategories with the highest profit, and lastly find products within these categories with the highest profit margin.
 
 ## Steps:
   1. Data Cleaning

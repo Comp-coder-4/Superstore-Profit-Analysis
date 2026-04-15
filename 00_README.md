@@ -39,6 +39,8 @@ Recommendation:
   
 - Creating_tables.sql file shows the code I used to create empty tables in SSMS
 
+## Note
+In the Sales table, 'Discount' column doesn't indicate if it's a discount on individual product items or a discount on the whole order. I explored the table and sorted by discount in descending order. Many orders had a discount greater than 50%, so it seems that these items were in clearance. In a real-world scenario, I would check with stakeholders, but for this analysis, for this reason, I assume it indicates the discount on a each individual product item.
 ___________
 This project is a continuation of what I completed as part of Vivek P.'s "Real-World SQL Projects: Hands-On Case Studies" course and my own ideas. 
 I gave the project a business problem and business context.

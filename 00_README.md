@@ -9,6 +9,11 @@ KPI = Profit
 
 The goal was to identify how profit varied over time on a high level (Category-level), find the categories and subcategories with the highest profit, and lastly find products within these categories with the highest profit margin.
 
+Equations used in my analysis:
+- Profit = Revenue - Cost
+- Profit Margin = (Profit/Revenue) * 100
+- Profit Marin per Unit = ((Price - Cost)/Price) * 100
+
 ## Steps:
   1. Data Cleaning
   2. Exploratory Data Analysis

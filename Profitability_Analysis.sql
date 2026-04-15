@@ -113,12 +113,17 @@ WHERE flag = 1 -- filtering out duplicates
 
 ---- //// High-Level: Category
 ---- Profit by Category
-
 --SELECT 
 --Category,
---SUM(ProfitCalculated) TotalProfit
---FROM CTE_sales
---GROUP BY Category
+--TotalProfit,
+--CONCAT(CAST(ROUND(((TotalProfit/SUM(TotalProfit) OVER()) * 100), 2) AS decimal(10, 2)), '%') PercentageContribution
+--FROM (
+--	SELECT 
+--	Category,
+--	SUM(ProfitCalculated) TotalProfit
+--	FROM CTE_sales
+--	GROUP BY Category
+--)t
 --ORDER BY TotalProfit DESC
 
 /* 
@@ -171,11 +176,15 @@ INSIGHT: Categories in order of total profit (highest first)
 			  Increasing since 2021
 			  Levelling off 2022-23
 
+------
+Decision & Action: 
+I decided to focus on Office Supplies and deep further into this category since
+it has generated the highest profit.
 
-Action: 
-1. Need to stabilise Office Supplies to prevent a drop in its profit
+Need to stabilise Office Supplies to prevent a drop in its profit.
+-------
 
-NOTE: To see the chart, see [insert screenshot filename]
+NOTE: View the chart in png file: Total Profit by Category and Year
 
 */
 
@@ -238,9 +247,9 @@ NOTE: To see the chart, see [insert screenshot filename]
 
 /* INSIGHT: Profit 
 
-1. Office Supplies: 
+Office Supplies: 
 
-NOTE: To see the chart, see [insert screenshot filename]
+NOTE: View the chart in png file: Total Profit (Office Supplies) by Year-Quarter
 
 */
 
@@ -275,9 +284,9 @@ NOTE: To see the chart, see [insert screenshot filename]
 /*
 INSIGHT: Profit:
 
-1. Office Supplies:
+Office Supplies: Highest in Q3 and Q4. Lower during Q1 and Q2. Could try selling more high margin products in Q2 (this can encourage sales during Q2 and Q3)
 
-NOTE: To see the chart, see [insert screenshot filename]
+NOTE: View the chart in png file: Total Profit (Office Supplies) by Quarter
 */
 
 
@@ -302,30 +311,39 @@ Office Supplies:
 
 */
 
-SELECT *
-FROM CTE_sales
-WHERE Category = 'Office Supplies' AND Subcategory = 'Storage'
-ORDER BY ProfitCalculated DESC
+---- When does each office supply subcategory perform best during the year? (look at seasonality or quarters)
+---- Look at units sold 
 
--- For Office Supplies art and appliances, seems that orders that had discount (especially 50%) had negative profit
+--SELECT 
+--	Subcategory,
+--	Quarter,
+--	SUM(Quantity) TotalUnitsSold
+--FROM CTE_sales
+--WHERE Category = 'Office Supplies' AND Subcategory IN ('Appliances', 'Art', 'Storage')
+--GROUP BY Subcategory, Quarter
+--ORDER BY Subcategory
 
--- Product-Level: Profit Margin = (revenue/cost) * 100
--- cost per unit = revenue per unit - profit per unit
--- To Find price per unit from sales table (Price/Quantity)
 
 
+---- ////// Product-Level
+---- Profit Margin per Unit
+---- Equation: profit margin per unit = ((price - cost)/price) * 100
 
----- In this last section, I find which Technology products in the Copiers subcategory have highest Profit Margin per Unit.
 ---- First I calculate Cost per Unit and then I calculate Profit Margin per Unit
 
------- Deriving Cost Per Unit from Profit Per Unit and Price Per Unit 
---, CTE_sales_costPerUnit AS (
---SELECT s.*,
---p.Price PricePerUnit,
---p.price - (Profit/Quantity) CostPerUnit
---FROM CTE_sales s
---LEFT JOIN Products p 
---ON s.ProductID = p.ProductID)
+------ Deriving Cost Per Unit 
+, CTE_sales_costPerUnit AS (
+select s.*, 
+CAST(s.cost/s.quantity AS decimal(10,2)) AS CostPerUnit,
+p.price AS PricePerUnit
+from CTE_sales s
+LEFT JOIN Products p 
+ON s.productID = p.ProductID
+)
+
+----
+SELECT *
+FROM CTE_sales_costPerUnit
 
 --- Profit = Price - Cost
 ---- Cost = Price - Profit

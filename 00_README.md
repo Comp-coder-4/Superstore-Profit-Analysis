@@ -21,13 +21,14 @@ Equations used in my analysis:
      
 Tools used: SQL, Excel, Power BI
 
-## Key Insights & Recommendations
-- Insight: 
+## Key Insights
+1. Insight: Office Supplies contribution 43.95% of total profit
+2. Insight: Office Supplies profit:
+          -Increased from 2020-22. 
+					-Big increase 2020-21. 
+					-Levelled off from 2022
+3. Insight: Highest in Q3 and Q4. Lower during Q1 and Q2. Could try selling more high margin products in Q2 (this can encourage sales during Q2 and Q3)
   
-Recommendation: 
-
-- Insight: 
-Recommendation: 
 
 ## File Structure
 - Step 1. Data Cleaning is in the Data_Cleaning.sql file

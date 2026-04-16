@@ -3,17 +3,15 @@
 The dataset looks at superstore sales, along with customer data and product data from 2020 to 2023.
 The categories of products are Technoloy, Office Supplies and Furniture.
 
-## Business Scenario: Which products can be used to increase profit?
+## Business Scenario: Which category generated the most profit?
 
 KPI = Profit
 
-The goal was to identify how profit varied over time on a high level (Category-level), find the categories and subcategories with the highest profit, and lastly find products within these categories with the highest profit margin.
+The goal was to identify how profit varied over time on a high level (Category-level), find the categories and subcategories with the highest profit
 
 Equations used in my analysis:
 - Profit = Revenue - Cost
 - Profit Margin = (Profit/Revenue) * 100
-- Profit Marin per Unit = ((Price - Cost)/Price) * 100
-
 ## Steps:
   1. Data Cleaning
   2. Exploratory Data Analysis

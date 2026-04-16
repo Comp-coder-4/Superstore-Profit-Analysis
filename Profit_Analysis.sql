@@ -329,15 +329,3 @@ Office Supplies:
 							3. Storage
 
 */
-
----- When does each office supply subcategory perform best during the year? (look at seasonality or quarters)
----- Look at units sold 
-
---SELECT 
---	Subcategory,
---	Quarter,
---	SUM(Quantity) TotalUnitsSold
---FROM CTE_sales
---WHERE Category = 'Office Supplies' AND Subcategory IN ('Appliances', 'Art', 'Storage')
---GROUP BY Subcategory, Quarter
---ORDER BY Subcategory

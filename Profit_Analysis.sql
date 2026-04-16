@@ -51,14 +51,16 @@ WHERE flag = 1 -- filtering out duplicates
 		p.Subcategory,
 		p.ProductName,
 		s.Quantity,
-		s.Price,
+		s.Price SalesPrice,
 		s.Discount,
 		s.Profit,
-		(s.price - (s.price * s.discount)) * s.Quantity AS Revenue ---- I added a Revenue column
+		p.price ProductPrice,
+		CAST(ROUND((p.price - (p.price * s.discount)) * s.Quantity, 2) AS DECIMAL(10,2)) AS Revenue ---- I added a Revenue column
 	FROM CTE_Sales_clean s
 	LEFT JOIN Products p
 	ON s.ProductID = p.ProductID
 	)
+
 
 -- Secondly I calculate cost for each order
 , CTE_sales_transform2 AS (
@@ -75,13 +77,15 @@ WHERE flag = 1 -- filtering out duplicates
 		Subcategory,
 		ProductName,
 		Quantity,
-		Price,
+		SalesPrice,
 		Discount,
 		Profit,
+		ProductPrice,
 		Revenue,
 		Revenue - profit AS Cost -- Cost calculation
 	FROM CTE_sales_transform
 	)
+
 
 -- Lastly I calculate profit for each order
 , CTE_sales AS (
@@ -98,14 +102,29 @@ WHERE flag = 1 -- filtering out duplicates
 		Subcategory,
 		ProductName,
 		Quantity,
-		Price,
+		SalesPrice,
 		Discount,
+		ProductPrice,
 		Revenue,
 		Cost,
+		Profit,
 		Revenue - Cost AS ProfitCalculated
 	FROM CTE_sales_transform2
-	)
+)
 
+SELECT COUNT(DISTINCT ProductID)
+FROM (
+	SELECT p.*, s.OrderDate, s.OrderID, s.Quantity, s.SalesPrice, s.Discount, s.ProductPrice, s.Revenue, s.Cost, s.Profit, s.ProfitCalculated
+	FROM Products p
+	LEFT JOIN CTE_sales s
+	ON p.ProductID	= s.ProductID
+	WHERE Discount = 0.00
+	)t
+	
+	
+
+	--SELECT COUNT(DISTINCT PRODUCTID)
+	--FROM Products -- 1810
 
 ---- //////////////////////////////
 ---- 4. Profit Analysis
@@ -322,67 +341,3 @@ Office Supplies:
 --WHERE Category = 'Office Supplies' AND Subcategory IN ('Appliances', 'Art', 'Storage')
 --GROUP BY Subcategory, Quarter
 --ORDER BY Subcategory
-
-
-
----- ////// Product-Level
----- Profit Margin per Unit
----- Equation: profit margin per unit = ((price - cost)/price) * 100
-
----- First I calculate Cost per Unit and then I calculate Profit Margin per Unit
-
------- Deriving Cost Per Unit 
-, CTE_sales_costPerUnit AS (
-select s.*, 
-CAST(s.cost/s.quantity AS decimal(10,2)) AS CostPerUnit,
-p.price AS PricePerUnit
-from CTE_sales s
-LEFT JOIN Products p 
-ON s.productID = p.ProductID
-)
-
-----
-SELECT *
-FROM CTE_sales_costPerUnit
-
---- Profit = Price - Cost
----- Cost = Price - Profit
-
-
----- Calculating Profit Margin Per Unit for Technology products
----- Formula: Profit Margin Per Unit = ((PricePerUnit - CostPerUnit)/ PricePerUnit) * 100
------- Improved query execution time by 13 seconds by putting RowLabel in outerquery
---SELECT TOP 10 *
---FROM (
---	SELECT *,
---	ROW_NUMBER() OVER(PARTITION BY ProductName ORDER BY ProfitMarginPerUnit DESC) RowLabel
---	FROM (
---		SELECT 
---		c.Category,
---		c.Subcategory,
---		c.productName,
---		c.quantity,
---		c.price,
---		c.discount,
---		c.profit,
---		CAST(((PricePerUnit - CostPerUnit) / PricePerUnit) * 100 AS DECIMAL(10, 1)) ProfitMarginPerUnit
---		FROM CTE_sales_costperunit c
---		WHERE Category = 'Technology'
---	)t
---)t
---WHERE RowLabel = 1 AND Subcategory = 'Copiers'
---ORDER BY ProfitMarginPerUnit DESC
-
-
-/* INSIGHT:
-TOP 5 Technology Copier products with the highest Profit Margin Per Unit:
-
-1. Hewlett Copy Machine, Color
-2. HP Fax and Copier, Digital
-3. Sharp Copy Machine, High-Speed
-4. Sharp Wireless Fax, Color
-5. Canon Ink, High Speed
-
-RECOMMENDATION:
-Focus marketing efforts to promote these top 5 technology copier products over low margin items
-*/

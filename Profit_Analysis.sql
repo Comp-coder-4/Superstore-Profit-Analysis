@@ -134,9 +134,9 @@ ORDER BY TotalProfit DESC
 
 /* 
 INSIGHT: Categories in order of total profit (highest first)
-1. Office Supplies
-2. Technology
-3. Furniture
+1. Office Supplies: 44%
+2. Technology: 38%
+3. Furniture: 18%
 */
 
 ---- //// Adding Time Dimension to Total Profit by Category

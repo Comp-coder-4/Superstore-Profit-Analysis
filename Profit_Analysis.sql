@@ -121,10 +121,7 @@ FROM (
 	WHERE Discount = 0.00
 	)t
 	
-	
 
-	--SELECT COUNT(DISTINCT PRODUCTID)
-	--FROM Products -- 1810
 
 ---- //////////////////////////////
 ---- 4. Profit Analysis
@@ -132,18 +129,18 @@ FROM (
 
 ---- //// High-Level: Category
 ---- Profit by Category
---SELECT 
---Category,
---TotalProfit,
---CONCAT(CAST(ROUND(((TotalProfit/SUM(TotalProfit) OVER()) * 100), 2) AS decimal(10, 2)), '%') PercentageContribution
---FROM (
---	SELECT 
---	Category,
---	SUM(ProfitCalculated) TotalProfit
---	FROM CTE_sales
---	GROUP BY Category
---)t
---ORDER BY TotalProfit DESC
+SELECT 
+Category,
+TotalProfit,
+CONCAT(CAST(ROUND(((TotalProfit/SUM(TotalProfit) OVER()) * 100), 2) AS decimal(10, 2)), '%') PercentageContribution
+FROM (
+	SELECT 
+	Category,
+	SUM(ProfitCalculated) TotalProfit
+	FROM CTE_sales
+	GROUP BY Category
+)t
+ORDER BY TotalProfit DESC
 
 /* 
 INSIGHT: Categories in order of total profit (highest first)
@@ -155,32 +152,32 @@ INSIGHT: Categories in order of total profit (highest first)
 ---- //// Adding Time Dimension to Total Profit by Category
 
 ------ Profit by Category and Year
---SELECT
---Category,
---[2020], 
---[2021], 
---[2022], 
---[2023]
+SELECT
+Category,
+[2020], 
+[2021], 
+[2022], 
+[2023]
 
---FROM (
+FROM (
 
---	SELECT 
---	Category,
---	Year,
---	ProfitCalculated
---	FROM CTE_sales
+	SELECT 
+	Category,
+	Year,
+	ProfitCalculated
+	FROM CTE_sales
 
---) AS SourceQuery
+) AS SourceQuery
 
---PIVOT 
+PIVOT 
 
---(
---	SUM([ProfitCalculated])
---	FOR [Year] IN ([2020], [2021] , [2022], [2023])
+(
+	SUM([ProfitCalculated])
+	FOR [Year] IN ([2020], [2021] , [2022], [2023])
 
---) AS PivotQuery
+) AS PivotQuery
 
---ORDER BY Category
+ORDER BY Category
 
 /* INSIGHT: Profit
 
@@ -208,61 +205,61 @@ NOTE: View the chart in png file: Total Profit by Category and Year
 */
 
 ------ Office Supplies Profit by YearQuarter
---SELECT
---Category,
---[2020 Q1], 
---[2020 Q2], 
---[2020 Q3], 
---[2020 Q4], 
---[2021 Q1], 
---[2021 Q2], 
---[2021 Q3], 
---[2021 Q4], 
---[2022 Q1], 
---[2022 Q2], 
---[2022 Q3], 
---[2022 Q4], 
---[2023 Q1],
---[2023 Q2],
---[2023 Q3],
---[2023 Q4]
+SELECT
+Category,
+[2020 Q1], 
+[2020 Q2], 
+[2020 Q3], 
+[2020 Q4], 
+[2021 Q1], 
+[2021 Q2], 
+[2021 Q3], 
+[2021 Q4], 
+[2022 Q1], 
+[2022 Q2], 
+[2022 Q3], 
+[2022 Q4], 
+[2023 Q1],
+[2023 Q2],
+[2023 Q3],
+[2023 Q4]
 
---FROM (
+FROM (
 
---	SELECT 
---	Category,
---	YearQuarter,
---	ProfitCalculated
---	FROM CTE_sales
+	SELECT 
+	Category,
+	YearQuarter,
+	ProfitCalculated
+	FROM CTE_sales
 
---) AS SourceQuery
+) AS SourceQuery
 
---PIVOT 
+PIVOT 
 
---(
---	SUM([ProfitCalculated])
---	FOR [YearQuarter] IN (
---						[2020 Q1], 
---						[2020 Q2], 
---						[2020 Q3], 
---						[2020 Q4], 
---						[2021 Q1], 
---						[2021 Q2], 
---						[2021 Q3], 
---						[2021 Q4], 
---						[2022 Q1], 
---						[2022 Q2], 
---						[2022 Q3], 
---						[2022 Q4], 
---						[2023 Q1],
---						[2023 Q2],
---						[2023 Q3],
---						[2023 Q4]
---)
+(
+	SUM([ProfitCalculated])
+	FOR [YearQuarter] IN (
+						[2020 Q1], 
+						[2020 Q2], 
+						[2020 Q3], 
+						[2020 Q4], 
+						[2021 Q1], 
+						[2021 Q2], 
+						[2021 Q3], 
+						[2021 Q4], 
+						[2022 Q1], 
+						[2022 Q2], 
+						[2022 Q3], 
+						[2022 Q4], 
+						[2023 Q1],
+						[2023 Q2],
+						[2023 Q3],
+						[2023 Q4]
+)
 
---) AS PivotQuery
+) AS PivotQuery
 
---WHERE Category = 'Office Supplies'
+WHERE Category = 'Office Supplies'
 
 /* INSIGHT: Profit 
 
@@ -273,32 +270,32 @@ NOTE: View the chart in png file: Total Profit (Office Supplies) by Year-Quarter
 */
 
 ------ Profit (Office Supplies) by Quarter
---SELECT
---	Category,
---	[Q1], 
---	[Q2], 
---	[Q3], 
---	[Q4]
+SELECT
+	Category,
+	[Q1], 
+	[Q2], 
+	[Q3], 
+	[Q4]
 
---	FROM (
+	FROM (
 
---		SELECT 
---		Category,
---		Quarter,
---		ProfitCalculated
---		FROM CTE_sales
+		SELECT 
+		Category,
+		Quarter,
+		ProfitCalculated
+		FROM CTE_sales
 
---	) AS SourceQuery
+	) AS SourceQuery
 
---	PIVOT 
+	PIVOT 
 
---	(
---		SUM([ProfitCalculated])
---		FOR [Quarter] IN ([Q1], [Q2] , [Q3], [Q4])
+	(
+		SUM([ProfitCalculated])
+		FOR [Quarter] IN ([Q1], [Q2] , [Q3], [Q4])
 
---	) AS PivotQuery
+	) AS PivotQuery
 
---WHERE Category = 'Office Supplies'
+WHERE Category = 'Office Supplies'
 
 /*
 INSIGHT: Profit:
@@ -312,12 +309,12 @@ NOTE: View the chart in png file: Total Profit (Office Supplies) by Quarter
 ---- //// Mid-Level: SubCategory
 
 -------- Profit (Office Supplies) by SubCategory
---SELECT Subcategory,
---SUM(ProfitCalculated) TotalProfit
---FROM CTE_Sales
---WHERE Category = 'Office Supplies'
---GROUP BY Subcategory
---ORDER BY TotalProfit DESC
+SELECT Subcategory,
+SUM(ProfitCalculated) TotalProfit
+FROM CTE_Sales
+WHERE Category = 'Office Supplies'
+GROUP BY Subcategory
+ORDER BY TotalProfit DESC
 
 /* 
 INSIGHT: Profit 

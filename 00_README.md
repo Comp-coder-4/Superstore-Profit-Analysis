@@ -1,4 +1,4 @@
-# Superstore Profit Analysis
+# <ins>Superstore Profit Analysis</ins>
 
 The dataset looks at superstore sales, along with customer data and product data from 2020 to 2023.
 The categories of products are Technoloy, Office Supplies and Furniture.
@@ -24,10 +24,10 @@ Tools used: SQL, Excel, Power BI
 ## Key Insights
 1. Insight: Office Supplies contribution 43.95% of total profit
 2. Insight: Office Supplies profit:
-          -Increased from 2020-22. 
-					-Big increase 2020-21. 
-					-Levelled off from 2022
-3. Insight: Highest in Q3 and Q4. Lower during Q1 and Q2. Could try selling more high margin products in Q2 (this can encourage sales during Q2 and Q3)
+*Increased from 2020-22.
+*Big increase from 2020 to21. 
+*Levelled off from 2022
+4. Insight: Highest in Q3 and Q4. Lower during Q1 and Q2. Could try selling more high margin products in Q2 (this can encourage sales during Q2 and Q3)
   
 
 ## File Structure

@@ -33,7 +33,6 @@ Tools used: SQL, Excel
 - Step 1. Data Cleaning is in the Data_Cleaning.sql file
 - Step 2. Exploratory Data Analysis is in the Exploratory_Data_Analysis.sql file
 - Step 3. Data Transormation and Step 4. Profit per Unit Analysis are in the Analysis.sql file
-- Step 5. Visualisation is in the Power BI Dashboard.png file
   
 - Creating_tables.sql file shows the code I used to create empty tables in SSMS
 

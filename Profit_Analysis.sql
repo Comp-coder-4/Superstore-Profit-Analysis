@@ -112,16 +112,6 @@ WHERE flag = 1 -- filtering out duplicates
 	FROM CTE_sales_transform2
 )
 
-SELECT COUNT(DISTINCT ProductID)
-FROM (
-	SELECT p.*, s.OrderDate, s.OrderID, s.Quantity, s.SalesPrice, s.Discount, s.ProductPrice, s.Revenue, s.Cost, s.Profit, s.ProfitCalculated
-	FROM Products p
-	LEFT JOIN CTE_sales s
-	ON p.ProductID	= s.ProductID
-	WHERE Discount = 0.00
-	)t
-	
-
 
 ---- //////////////////////////////
 ---- 4. Profit Analysis
@@ -261,10 +251,7 @@ PIVOT
 
 WHERE Category = 'Office Supplies'
 
-/* INSIGHT: Profit 
-
-Office Supplies: 
-
+/* 
 NOTE: View the chart in png file: Total Profit (Office Supplies) by Year-Quarter
 
 */

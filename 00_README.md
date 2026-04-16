@@ -17,9 +17,8 @@ Equations used in my analysis:
   2. Exploratory Data Analysis
   3. Data Transformation
   4. Profit Analysis
-  5. Visualisation
      
-Tools used: SQL, Excel, Power BI
+Tools used: SQL, Excel
 
 ## Key Insights
 1. Insight: Office Supplies contribution 44% of total profit

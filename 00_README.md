@@ -11,7 +11,7 @@ The goal was to identify how profit varied over time on a high level (Category-l
 
 Equations used in my analysis:
 - Profit = Revenue - Cost
-- Profit Margin = (Profit/Revenue) * 100
+
 ## Steps:
   1. Data Cleaning
   2. Exploratory Data Analysis

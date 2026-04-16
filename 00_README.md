@@ -22,7 +22,7 @@ Equations used in my analysis:
 Tools used: SQL, Excel, Power BI
 
 ## Key Insights
-1. Insight: Office Supplies contribution 43.95% of total profit
+1. Insight: Office Supplies contribution 44% of total profit
 2. Insight: Office Supplies profit:
     * Increased from 2020-22.
     * Big increase from 2020 to21. 

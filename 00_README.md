@@ -3,13 +3,13 @@
 The dataset looks at superstore sales, along with customer data and product data from 2020 to 2023.
 The categories of products are Technoloy, Office Supplies and Furniture.
 
-## Business Scenario: Where is the most profit being generated?
+## Business Scenario: Which category generated the most profit?
 
 KPI = Profit
 
-The goal was to identify how profit varied over time on a high level (Category-level), find the categories and subcategories with the highest profit
+The goal was to identify how profit varied over time on a high level (Category-level) and find the categories and subcategories with the highest profit
 
-Equations used in my analysis:
+Equation used in my analysis:
 - Profit = Revenue - Cost
 
 ## Steps:

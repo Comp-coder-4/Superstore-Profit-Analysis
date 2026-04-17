@@ -247,7 +247,6 @@ WHERE Category = 'Office Supplies'
 
 /* 
 NOTE: View the chart in png file: Total Profit (Office Supplies) by Year-Quarter
-
 */
 
 ------ Profit (Office Supplies) by Quarter

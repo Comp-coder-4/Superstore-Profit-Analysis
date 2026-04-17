@@ -61,7 +61,6 @@ WHERE flag = 1 -- filtering out duplicates
 	ON s.ProductID = p.ProductID
 	)
 
-
 -- Secondly I calculate cost for each order
 , CTE_sales_transform2 AS (
 	SELECT 
@@ -85,7 +84,6 @@ WHERE flag = 1 -- filtering out duplicates
 		Revenue - profit AS Cost -- Cost calculation
 	FROM CTE_sales_transform
 	)
-
 
 -- Lastly I calculate profit for each order
 , CTE_sales AS (
@@ -111,7 +109,6 @@ WHERE flag = 1 -- filtering out duplicates
 		Revenue - Cost AS ProfitCalculated
 	FROM CTE_sales_transform2
 )
-
 
 ---- //////////////////////////////
 ---- 4. Profit Analysis
@@ -140,7 +137,6 @@ INSIGHT: Categories in order of total profit (highest first)
 */
 
 ---- //// Adding Time Dimension to Total Profit by Category
-
 ------ Profit by Category and Year
 SELECT
 Category,
@@ -181,7 +177,6 @@ ORDER BY Category
 3. Furniture: Big drop 2020-21
 			  Increasing since 2021
 			  Levelling off 2022-23
-
 ------
 Decision & Action: 
 I decided to focus on Office Supplies and deep further into this category since
@@ -191,7 +186,6 @@ Need to stabilise Office Supplies to prevent a drop in its profit.
 -------
 
 NOTE: View the chart in png file: Total Profit by Category and Year
-
 */
 
 ------ Office Supplies Profit by YearQuarter
@@ -294,7 +288,6 @@ NOTE: View the chart in png file: Total Profit (Office Supplies) by Quarter
 
 
 ---- //// Mid-Level: SubCategory
-
 -------- Profit (Office Supplies) by SubCategory
 SELECT Subcategory,
 SUM(ProfitCalculated) TotalProfit
@@ -311,5 +304,4 @@ Office Supplies:
 							1. Appliances
 							2. Art
 							3. Storage
-
 */

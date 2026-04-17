@@ -7,7 +7,7 @@ The categories of products are Technoloy, Office Supplies and Furniture.
 
 KPI = Profit
 
-The goal was to identify how profit varied over time on a high level (Category-level) and find the categories and subcategories with the highest profit
+The goal was to identify how profit varied over time on a high level (Category-level) and find the categories and subcategories with the highest profit. In the dashboard, I show the rankings of categories by profit and within each category, I rank the subcategories by profit.
 
 Equation used in my analysis:
 - Profit = Revenue - Cost
@@ -18,8 +18,9 @@ Equation used in my analysis:
   2. Exploratory Data Analysis
   3. Data Transformation
   4. Profit Analysis
+  5. Visualisation
      
-Tools used: SQL, Excel
+Tools used: SQL, Excel, Power BI
 
 ## Key Insights
 1. Insight: Office Supplies contribution 44% of total profit
@@ -34,6 +35,7 @@ Tools used: SQL, Excel
 - Step 1. Data Cleaning is in the Data_Cleaning.sql file
 - Step 2. Exploratory Data Analysis is in the Exploratory_Data_Analysis.sql file
 - Step 3. Data Transormation and Step 4. Profit per Unit Analysis are in the Analysis.sql file
+- Step 5. Visualisation is in the Profit Dashboard.png file
   
 - Creating_tables.sql file shows the code I used to create empty tables in SSMS
 

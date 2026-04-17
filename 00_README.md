@@ -9,9 +9,17 @@ KPI = Profit
 
 The goal was to identify how profit varied over time on a high level (Category-level) and find the categories and subcategories with the highest profit. In the dashboard, I show the rankings of categories by profit and within each category, I rank the subcategories by profit.
 
+Key SQL techniques used:
+- CTE to clean data
+- PIVOT to analyse profit by time
+  
+Key Power BI DAX used:
+- CALCULATE() to make rankings by profit
+
 Equation used in my analysis:
 - Profit = Revenue - Cost
 - Profit Margin = (Profit / Revenue) x 100
+
 
 ## Steps:
   1. Data Cleaning

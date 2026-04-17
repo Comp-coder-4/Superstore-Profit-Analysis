@@ -3,7 +3,7 @@
 The dataset looks at superstore sales, along with customer data and product data from 2020 to 2023.
 The categories of products are Technoloy, Office Supplies and Furniture.
 
-## Business Scenario: Which category generated the most profit?
+## Business Scenario: Where is the most profit being generated?
 
 KPI = Profit
 
